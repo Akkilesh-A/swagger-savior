@@ -1,0 +1,359 @@
+<span>
+   <div class="opblock opblock-post is-open" id="operations-auth-auth_login">
+       <div class="opblock-summary opblock-summary-post">
+           <button aria-label="post ​/auth​/login​/" aria-expanded="true" class="opblock-summary-control">
+               <span class="opblock-summary-method">POST</span><span class="opblock-summary-path" data-path="/auth/login/"><a class="nostyle"><span>/auth<wbr>/login<wbr>/</span></a></span>
+               <div class="opblock-summary-description">User login action.</div>
+               <span class="opblock-summary-operation-id">auth_login</span>
+               <svg class="arrow" width="20" height="20" aria-hidden="true" focusable="false">
+                   <use href="#large-arrow-up" xlink:href="#large-arrow-up"></use>
+               </svg>
+           </button>
+           <button class="authorization__btn unlocked" aria-label="authorization button unlocked">
+               <svg width="20" height="20">
+                   <use href="#unlocked" xlink:href="#unlocked"></use>
+               </svg>
+           </button>
+           <div class="view-line-link copy-to-clipboard" title="Copy to clipboard">
+               <svg width="15" height="16">
+                   <use href="#copy" xlink:href="#copy"></use>
+               </svg>
+           </div>
+       </div>
+       <div class="no-margin">
+           <div class="opblock-body">
+               <div class="opblock-description-wrapper">
+                   <div class="opblock-description">
+                       <div class="markdown">
+                           <p>This action allows users to log in, generating access and refresh tokens.</p>
+                       </div>
+                   </div>
+               </div>
+               <div class="opblock-section">
+                   <div class="opblock-section-header">
+                       <div class="tab-header">
+                           <h4 class="opblock-title">Parameters</h4>
+                       </div>
+                       <div class="try-out"><button class="btn try-out__btn cancel">Cancel</button></div>
+                   </div>
+                   <div class="parameters-container">
+                       <div class="table-container">
+                           <table class="parameters">
+                               <thead>
+                                   <tr>
+                                       <th class="col_header parameters-col_name">Name</th>
+                                       <th class="col_header parameters-col_description">Description</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr data-param-name="data" data-param-in="body">
+                                       <td class="parameters-col_name">
+                                           <div class="parameter__name required">data<span>&nbsp;*</span></div>
+                                           <div class="parameter__type">object</div>
+                                           <div class="parameter__deprecated"></div>
+                                           <div class="parameter__in">(body)</div>
+                                       </td>
+                                       <td class="parameters-col_description">
+                                           <div class="model-example">
+                                               <ul class="tab" role="tablist">
+                                                   <li class="tabitem active" role="presentation"><button aria-controls="+plaEBQ=" aria-selected="true" class="tablinks" data-name="example" id="F1RiuKU=" role="tab">Edit Value</button></li>
+                                                   <li class="tabitem" role="presentation"><button aria-controls="jJ5I1Xo=" aria-selected="false" class="tablinks inactive" data-name="model" id="JGHiJDM=" role="tab">Model</button></li>
+                                               </ul>
+                                               <div aria-hidden="false" aria-labelledby="F1RiuKU=" data-name="examplePanel" id="+plaEBQ=" role="tabpanel" tabindex="0">
+                                                   <div class="body-param" data-param-name="data" data-param-in="body">
+                                                       <textarea class="body-param__text">{
+ "username": "string",
+ "password": "string"
+}</textarea>
+                                                       <div class="body-param-options">
+                                                           <div class="body-param-edit"><button class="btn cancel body-param__example-edit button">Cancel</button></div>
+                                                           <label for="">
+                                                               <span>Parameter content type</span>
+                                                               <div class="content-type-wrapper body-param-content-type">
+                                                                   <select aria-label="Parameter content type" class="content-type">
+                                                                       <option value="application/json">application/json</option>
+                                                                   </select>
+                                                               </div>
+                                                           </label>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </td>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+               </div>
+               <div class="execute-wrapper"><button class="btn execute opblock-control__btn">Execute</button></div>
+               <div class="responses-wrapper">
+                   <div class="opblock-section-header">
+                       <h4>Responses</h4>
+                       <label for="post_auth_login__responses_select">
+                           <span>Response content type</span>
+                           <div class="content-type-wrapper execute-content-type">
+                               <select aria-controls="post_auth_login__responses" aria-label="Response content type" class="content-type" id="post_auth_login__responses_select">
+                                   <option value="application/json">application/json</option>
+                               </select>
+                           </div>
+                       </label>
+                   </div>
+                   <div class="responses-inner">
+                       <table aria-live="polite" class="responses-table" id="post_auth_login__responses" role="region">
+                           <thead>
+                               <tr class="responses-header">
+                                   <td class="col_header response-col_status">Code</td>
+                                   <td class="col_header response-col_description">Description</td>
+                               </tr>
+                           </thead>
+                           <tbody>
+                               <tr class="response " data-code="200">
+                                   <td class="response-col_status">200</td>
+                                   <td class="response-col_description">
+                                       <div class="response-col_description__inner">
+                                           <div class="markdown">
+                                               <p>User Logged in sucessfully</p>
+                                           </div>
+                                       </div>
+                                       <div class="model-example">
+                                           <ul class="tab" role="tablist">
+                                               <li class="tabitem" role="presentation"><button aria-controls="o4ehVUQ=" aria-selected="false" class="tablinks" data-name="example" id="hgk3tm0=" role="tab">Example Value</button></li>
+                                               <li class="tabitem active" role="presentation"><button aria-controls="b1uVmjI=" aria-selected="true" class="tablinks" data-name="model" id="gHnfb/4=" role="tab">Model</button></li>
+                                           </ul>
+                                           <div aria-hidden="false" aria-labelledby="gHnfb/4=" data-name="modelPanel" id="b1uVmjI=" role="tabpanel" tabindex="0">
+                                               <div class="model-box">
+                                                   <span class="model">
+                                                       <span class="">
+                                                           <button aria-expanded="true" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/LoginResponse</span><span class="model-title__text">LoginResponse</span></span></span><span class="model-toggle"></span></button><span class="brace-open object">{</span><span class="model-jump-to-path"></span>
+                                                           <span class="inner-object">
+                                                               <table class="model">
+                                                                   <tbody>
+                                                                       <tr class="property-row required">
+                                                                           <td>message<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Message</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr class="property-row required">
+                                                                           <td>error<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Error</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr class="property-row required">
+                                                                           <td>data<span class="star">*</span></td>
+                                                                           <td>
+                                                                               <span class="model">
+                                                                                   <span class="">
+                                                                                       <button aria-expanded="true" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/UserResponseDataField</span><span class="model-title__text">UserResponseDataField</span></span></span><span class="model-toggle"></span></button><span class="brace-open object">{</span><span class="model-jump-to-path"></span>
+                                                                                       <span class="inner-object">
+                                                                                           <table class="model">
+                                                                                               <tbody>
+                                                                                                   <tr class="property-row required">
+                                                                                                       <td>userData<span class="star">*</span></td>
+                                                                                                       <td>
+                                                                                                           <span class="model">
+                                                                                                               <span class="">
+                                                                                                                   <button aria-expanded="true" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/User</span><span class="model-title__text">User</span></span></span><span class="model-toggle"></span></button><span class="brace-open object">{</span><span class="model-jump-to-path"></span>
+                                                                                                                   <span class="inner-object">
+                                                                                                                       <table class="model">
+                                                                                                                           <tbody>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>id</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Id</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row required">
+                                                                                                                                   <td>email<span class="star">*</span></td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Email</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>firstName</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">First name</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>lastName</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Last name</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>gender</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Gender</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>dateOfBirth</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Date of birth</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>isContactVerified</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Is contact verified</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>isEmailVerified</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Is email verified</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>profilePicture</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Profile picture</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>socialLinks</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Social links</span></span></span><span class="model-toggle collapsed"></span><span><span><span>{</span>...<span>}</span></span></span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>learner</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/Learner</span><span class="model-title__text">Learner</span></span></span><span class="model-toggle collapsed"></span><span><span><span>{</span>...<span>}</span><span class="model-jump-to-path"></span></span></span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>coordinator</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/Coordinator</span><span class="model-title__text">Coordinator</span></span></span><span class="model-toggle collapsed"></span><span><span><span>{</span>...<span>}</span><span class="model-jump-to-path"></span></span></span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row">
+                                                                                                                                   <td>instructor</td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/Instructor</span><span class="model-title__text">Instructor</span></span></span><span class="model-toggle collapsed"></span><span><span><span>{</span>...<span>}</span><span class="model-jump-to-path"></span></span></span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr class="property-row required">
+                                                                                                                                   <td>phoneNumber<span class="star">*</span></td>
+                                                                                                                                   <td><span class="model"><span class=""><button aria-expanded="false" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Phone number</span></span></span><span class="model-toggle collapsed"></span><span>[...]</span></button></span></span></td>
+                                                                                                                               </tr>
+                                                                                                                               <tr>
+                                                                                                                                   <td>&nbsp;</td>
+                                                                                                                               </tr>
+                                                                                                                           </tbody>
+                                                                                                                       </table>
+                                                                                                                   </span>
+                                                                                                                   <span class="brace-close">}</span>
+                                                                                                               </span>
+                                                                                                           </span>
+                                                                                                       </td>
+                                                                                                   </tr>
+                                                                                                   <tr class="property-row required">
+                                                                                                       <td>accessToken<span class="star">*</span></td>
+                                                                                                       <td><span class="model"><span class=""><button aria-expanded="true" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Access token</span></span></span><span class="model-toggle"></span></button><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Access token</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                                                   </tr>
+                                                                                                   <tr class="property-row required">
+                                                                                                       <td>refreshToken<span class="star">*</span></td>
+                                                                                                       <td><span class="model"><span class=""><button aria-expanded="true" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-title__text">Refresh token</span></span></span><span class="model-toggle"></span></button><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Refresh token</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                                                   </tr>
+                                                                                                   <tr>
+                                                                                                       <td>&nbsp;</td>
+                                                                                                   </tr>
+                                                                                               </tbody>
+                                                                                           </table>
+                                                                                       </span>
+                                                                                       <span class="brace-close">}</span>
+                                                                                   </span>
+                                                                               </span>
+                                                                           </td>
+                                                                       </tr>
+                                                                       <tr>
+                                                                           <td>&nbsp;</td>
+                                                                       </tr>
+                                                                   </tbody>
+                                                               </table>
+                                                           </span>
+                                                           <span class="brace-close">}</span>
+                                                       </span>
+                                                   </span>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </td>
+                               </tr>
+                               <tr class="response " data-code="400">
+                                   <td class="response-col_status">400</td>
+                                   <td class="response-col_description">
+                                       <div class="response-col_description__inner">
+                                           <div class="markdown">
+                                               <p>Bad Request</p>
+                                           </div>
+                                       </div>
+                                       <div class="model-example">
+                                           <ul class="tab" role="tablist">
+                                               <li class="tabitem" role="presentation"><button aria-controls="IewRwPk=" aria-selected="false" class="tablinks" data-name="example" id="VbxYPiY=" role="tab">Example Value</button></li>
+                                               <li class="tabitem active" role="presentation"><button aria-controls="IIbLtO4=" aria-selected="true" class="tablinks" data-name="model" id="bQHiMCE=" role="tab">Model</button></li>
+                                           </ul>
+                                           <div aria-hidden="false" aria-labelledby="bQHiMCE=" data-name="modelPanel" id="IIbLtO4=" role="tabpanel" tabindex="0">
+                                               <div class="model-box">
+                                                   <span class="model">
+                                                       <span class="">
+                                                           <button aria-expanded="true" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/BaseResponse</span><span class="model-title__text">BaseResponse</span></span></span><span class="model-toggle"></span></button><span class="brace-open object">{</span><span class="model-jump-to-path"></span>
+                                                           <span class="inner-object">
+                                                               <table class="model">
+                                                                   <tbody>
+                                                                       <tr class="property-row required">
+                                                                           <td>message<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Message</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr class="property-row required">
+                                                                           <td>error<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Error</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr class="property-row required">
+                                                                           <td>data<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Data</span><span class="property primitive"><br>minLength: 1</span><span class="property primitive"><br>x-nullable: true</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr>
+                                                                           <td>&nbsp;</td>
+                                                                       </tr>
+                                                                   </tbody>
+                                                               </table>
+                                                           </span>
+                                                           <span class="brace-close">}</span>
+                                                       </span>
+                                                   </span>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </td>
+                               </tr>
+                               <tr class="response " data-code="401">
+                                   <td class="response-col_status">401</td>
+                                   <td class="response-col_description">
+                                       <div class="response-col_description__inner">
+                                           <div class="markdown">
+                                               <p>Incorrect username or password</p>
+                                           </div>
+                                       </div>
+                                       <div class="model-example">
+                                           <ul class="tab" role="tablist">
+                                               <li class="tabitem" role="presentation"><button aria-controls="4urZTuU=" aria-selected="false" class="tablinks" data-name="example" id="2J5qbyg=" role="tab">Example Value</button></li>
+                                               <li class="tabitem active" role="presentation"><button aria-controls="6WjDo9M=" aria-selected="true" class="tablinks" data-name="model" id="76bLOog=" role="tab">Model</button></li>
+                                           </ul>
+                                           <div aria-hidden="false" aria-labelledby="76bLOog=" data-name="modelPanel" id="6WjDo9M=" role="tabpanel" tabindex="0">
+                                               <div class="model-box">
+                                                   <span class="model">
+                                                       <span class="">
+                                                           <button aria-expanded="true" class="model-box-control"><span class="pointer"><span class="model-title"><span class="model-hint">https://api2.staging.ipropel.co.in/swagger/?format=openapi#/definitions/BaseResponse</span><span class="model-title__text">BaseResponse</span></span></span><span class="model-toggle"></span></button><span class="brace-open object">{</span><span class="model-jump-to-path"></span>
+                                                           <span class="inner-object">
+                                                               <table class="model">
+                                                                   <tbody>
+                                                                       <tr class="property-row required">
+                                                                           <td>message<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Message</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr class="property-row required">
+                                                                           <td>error<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Error</span><span class="property primitive"><br>minLength: 1</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr class="property-row required">
+                                                                           <td>data<span class="star">*</span></td>
+                                                                           <td><span class="model"><span class=""><span class="prop"><span class="prop-type">string</span><span class="property primitive"><br>title: Data</span><span class="property primitive"><br>minLength: 1</span><span class="property primitive"><br>x-nullable: true</span></span></span></span></td>
+                                                                       </tr>
+                                                                       <tr>
+                                                                           <td>&nbsp;</td>
+                                                                       </tr>
+                                                                   </tbody>
+                                                               </table>
+                                                           </span>
+                                                           <span class="brace-close">}</span>
+                                                       </span>
+                                                   </span>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </td>
+                               </tr>
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</span>
