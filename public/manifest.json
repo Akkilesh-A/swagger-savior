@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Swagger Auth Help",
+    "version": "1.0.0",
+    "description": "A basic extension",
+    "icons":{
+        "16": "images/icon-16.png",
+        "32": "images/icon-32.png"
+    },
+    "action":{
+        "default_popup":"index.html"
+    },
+    "permissions":[
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://*/*",
+        "http://*/*"
+    ]
+}
