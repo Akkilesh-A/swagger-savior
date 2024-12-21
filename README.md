@@ -1,9 +1,6 @@
 ![Swagger_Savior_Banner](https://github.com/user-attachments/assets/ad44524a-db6e-469d-af40-1d069aaad732)
 
-<div>
-    <img src="https://github.com/Akkilesh-A/swagger-savior/blob/main/public/images/icon-16.png" alt="Swagger_Savior_Icon" /><h3>Helps you automate tedious and repetitive task of switching to HTTPS, logging in with credentials, copying the access token, pasting it in the authorize modal</h3>
-</div>
-
+<h2>🪄 Helps you automate tedious and repetitive task of switching to HTTPS, logging in with credentials, copying the access token, pasting it in the authorize modal</h2>
 <p> A small task made even simpler! </p>
 
 ## 🌟 Key Features
