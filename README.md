@@ -61,7 +61,14 @@ npm run dev
         ```bash
         npm run build
         ```
-2. Go to ![Brave Extensions](brave://extensions/) | ![Chrome Extensions](chrome://extensions/)
+2. Go to 
+Brave Extensions | Chrome Extensions
+```bash
+brave://extensions/
+```
+```bash
+chrome://extensions/
+```
 
 3. Turn on developer mode.
 
