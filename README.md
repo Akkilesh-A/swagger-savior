@@ -1,7 +1,14 @@
 ![Swagger_Savior_Banner](https://github.com/user-attachments/assets/ad44524a-db6e-469d-af40-1d069aaad732)
 
-<h2>🪄 Helps you automate tedious and repetitive task of switching to HTTPS, logging in with credentials, copying the access token, pasting it in the authorize modal</h2>
-<p> A small task made even simpler! </p>
+<h1>🪄 Your solution to automate logging into Swagger!</h1>
+<ul style="list-style-type: '&#128073;';">
+    <li>Switching to HTTPS</li>
+    <li>Logging in with credentials</li>
+    <li>Copying the access token</li>
+    <li>Pasting in the authorize modal</li>
+</ul>
+<p><strong>All with the click of a single button</strong></p>
+<p>A small task made even simpler! </p>
 
 ## 🌟 Key Features
 
