@@ -10,6 +10,28 @@ export default function App() {
   const [protocol,setProtocol]=useState("https")
   const [backendURL, setbackendURL] = useState("")
 
+  async function autoSelectProtocol() {
+    const [tab]=await chrome.tabs.query({active:true})
+    chrome.scripting.executeScript({
+      target:{tabId:tab.id!},
+      func:async (protocol) => {
+        //Schemes and Authorize button bar
+        const ui=document.body.firstElementChild?.firstElementChild?.getElementsByClassName("swagger-ui")[0].lastElementChild?.getElementsByClassName("scheme-container")[0]
+        //Select https in dropdown menu
+        const https=ui?.firstElementChild?.firstElementChild?.lastElementChild as HTMLSelectElement
+        console.log("before val",https.value)
+
+        //Select option with specified protocol
+        const protocolOption=https.querySelector(`option[value=${protocol}]`) as HTMLOptionElement
+        protocolOption.selected=true
+        console.log("after val",https.value)
+        console.log("finished")
+      },
+      args:[protocol]
+    })
+  }
+
+
   useEffect(()=>{
     const savedJSON=localStorage.getItem("swagger-auth-help-JSON")
     if(savedJSON){
@@ -20,13 +42,18 @@ export default function App() {
       const backendLink=savedBackendURL.split('"')[1]
       setbackendURL(backendLink!)
     }
+    const savedProtocol=localStorage.getItem("swagger-auth-help-protocol")
+    if(savedProtocol){
+      setProtocol(savedProtocol!)
+    }
+    autoSelectProtocol()
   },[])
 
-  async function onclick(protocol:string,backendURL:string,jsonValue:string){
+  async function onclick(backendURL:string,jsonValue:string){
     const [tab]=await chrome.tabs.query({active:true})
     chrome.scripting.executeScript({
       target:{tabId:tab.id!},
-      func:async (protocol,backendURL,jsonValue) => {
+      func:async (backendURL,jsonValue) => {
         const backendLink=backendURL
         console.log(backendLink)
         const response=await fetch(backendLink,{
@@ -43,18 +70,11 @@ export default function App() {
         //Schemes and Authorize button bar
         const ui=document.body.firstElementChild?.firstElementChild?.getElementsByClassName("swagger-ui")[0].lastElementChild?.getElementsByClassName("scheme-container")[0]
 
-        //Select https in dropdown menu
-        const https=ui?.firstElementChild?.firstElementChild?.lastElementChild as HTMLSelectElement
-        https.click()
-        const protocolOption=https.querySelector(`option[value=${protocol}]`) as HTMLOptionElement
-        // https.value=protocol
-        protocolOption.click()
-
         //Authorize modal open
         const authorizeButton=document.getElementsByClassName("authorize")[0] as HTMLElement
         authorizeButton.click()
 
-        //Get the form
+        //Get the form "model-ux-content"
         const form=ui?.firstElementChild?.lastElementChild?.lastElementChild?.lastElementChild?.firstElementChild?.firstElementChild?.lastElementChild?.lastElementChild?.firstElementChild as HTMLFormElement
         console.log(form)
 
@@ -86,12 +106,19 @@ export default function App() {
             // Simulate a user click
             authorize.click();
             console.log("Authorize button clicked");
-          }, 500); // Adjust the timeout if needed
+
+            //Close the modal
+            const modalClose=ui?.firstElementChild?.lastElementChild?.lastElementChild?.lastElementChild?.firstElementChild?.firstElementChild?.firstElementChild?.lastElementChild as HTMLElement
+            modalClose.click()
+            console.log(modalClose)
+          }, 500);
         }
+
+
 
         console.log("finished")
       },
-      args:[protocol,backendURL,jsonValue]
+      args:[backendURL,jsonValue]
     })
   }
 
@@ -146,7 +173,7 @@ export default function App() {
 
         <div className="flex items-center justify-around">
           <Button onClick={()=>saveJSONToLocalStorage()}>Save</Button>
-          <Button onClick={()=>onclick(protocol,backendURL,inputJSON)}>Login</Button>
+          <Button onClick={()=>onclick(backendURL,inputJSON)}>Login</Button>
         </div>
       </div>
     </ThemeProvider>
