@@ -23,9 +23,15 @@
 
 ## ⬇️ To Download and Use
 
-1. Download this folder ![Swagger_Savior](https://github.com/Akkilesh-A/swagger-savior/blob/main/dist.zip)
+1. Download this folder [Swagger-Savior](https://github.com/Akkilesh-A/swagger-savior/blob/main/dist.zip)
 
-2. Go to ![Brave Extensions](brave://extensions/) | ![Chrome Extensions](chrome://extensions/)
+2. Go to Brave Extensions | Chrome Extensions
+```bash
+brave://extensions/
+```
+```bash
+chrome://extensions/
+```
 
 3. Turn on developer mode.
 
@@ -61,8 +67,7 @@ npm run dev
         ```bash
         npm run build
         ```
-2. Go to 
-Brave Extensions | Chrome Extensions
+2. Go to Brave Extensions | Chrome Extensions
 ```bash
 brave://extensions/
 ```
