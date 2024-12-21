@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Swagger Auth Help",
+    "name": "Swagger Savior ✌️",
     "version": "1.0.0",
-    "description": "A basic extension",
+    "description": "Hit your endpoint, copy your token, authorize yourself with just a hit of a button",
     "icons":{
         "16": "images/icon-16.png",
         "32": "images/icon-32.png",

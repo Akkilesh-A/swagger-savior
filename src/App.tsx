@@ -31,7 +31,6 @@ export default function App() {
     })
   }
 
-
   useEffect(()=>{
     const savedJSON=localStorage.getItem("swagger-auth-help-JSON")
     if(savedJSON){
@@ -114,8 +113,6 @@ export default function App() {
           }, 500);
         }
 
-
-
         console.log("finished")
       },
       args:[backendURL,jsonValue]
@@ -132,7 +129,7 @@ export default function App() {
       <div className="p-2 w-[300px] flex space-y-4 flex-col font-mono">
         <nav className="flex justify-between items-center">
           <img src="/images/icon-32.png" alt="Swagger_Auth_Help icon" />
-          <p className="font-extrabold">Swagger Auth Help</p>
+          <p className="font-extrabold text-lg">Swagger Savior ✌️</p>
           <ModeToggle />
         </nav>
 
