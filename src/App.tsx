@@ -1,19 +1,24 @@
-import { useEffect, useState } from "react";
-import { Button, Label, Textarea, Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "./components/ui";
+import {  useEffect, useState } from "react";
+import { Button, Label, Textarea, Select, SelectTrigger, SelectContent, SelectItem, SelectValue, Input } from "./components/ui";
 import { Delete } from "lucide-react";
 
 export default function App() {
 
-  const [inputJSON, setInputJSON] = useState("")
-  const [savedJSON,setSavedJSON] = useState("")
+  const [inputJSON,setInputJSON] = useState("")
   const [protocol,setProtocol]=useState("https")
   const [backendURL, setbackendURL] = useState("")
 
   useEffect(()=>{
-    const savedVal=localStorage.getItem("swagger-auth-help-JSON")
-    setSavedJSON(savedVal!)
+    const savedJSON=localStorage.getItem("swagger-auth-help-JSON")
+    if(savedJSON){
+      setInputJSON(JSON.parse(savedJSON!))
+    }
+    const savedBackendURL= localStorage.getItem("swagger-auth-help-BackendURL")
+    if(savedBackendURL){
+      const backendLink=savedBackendURL.split('"')[1]
+      setbackendURL(backendLink!)
+    }
   },[])
-
 
   async function onclick(protocol:string,backendURL:string,jsonValue:string){
     const [tab]=await chrome.tabs.query({active:true})
@@ -38,24 +43,50 @@ export default function App() {
 
         //Select https in dropdown menu
         const https=ui?.firstElementChild?.firstElementChild?.lastElementChild as HTMLSelectElement
-        https.value=protocol
+        https.click()
+        const protocolOption=https.querySelector(`option[value=${protocol}]`) as HTMLOptionElement
+        // https.value=protocol
+        protocolOption.click()
 
         //Authorize modal open
         const authorizeButton=document.getElementsByClassName("authorize")[0] as HTMLElement
         authorizeButton.click()
 
         //Get the form
-        const form=ui?.firstElementChild?.lastElementChild?.lastElementChild?.lastElementChild?.firstElementChild?.firstElementChild?.lastElementChild?.lastElementChild?.firstElementChild
+        const form=ui?.firstElementChild?.lastElementChild?.lastElementChild?.lastElementChild?.firstElementChild?.firstElementChild?.lastElementChild?.lastElementChild?.firstElementChild as HTMLFormElement
         console.log(form)
 
         //Get Input box
         const searchBox=form?.firstElementChild?.firstElementChild?.lastElementChild?.lastElementChild?.firstElementChild as HTMLInputElement
-        searchBox.value=token
-
+        searchBox.value="Bearer "+token
+        console.log(searchBox.value)
+        
         //Click on auhtorize button
-        const authorize=form?.lastElementChild?.firstElementChild as HTMLElement
+        const authorize=form?.lastElementChild?.firstElementChild as HTMLButtonElement
         console.log(authorize)
-        authorize.click()
+
+          // Trigger the 'input' event
+        const inputEvent = new Event('input', { bubbles: true });
+        searchBox.dispatchEvent(inputEvent);
+
+        // Trigger the 'change' event
+        const changeEvent = new Event('change', { bubbles: true });
+        searchBox.dispatchEvent(changeEvent);
+        // authorize.click()
+
+        if (authorize) {
+          setTimeout(() => {
+            // Ensure the button is not disabled
+            if (authorize.disabled) {
+              authorize.disabled = false;
+            }
+        
+            // Simulate a user click
+            authorize.click();
+            console.log("Authorize button clicked");
+          }, 500); // Adjust the timeout if needed
+        }
+
         console.log("finished")
       },
       args:[protocol,backendURL,jsonValue]
@@ -63,9 +94,8 @@ export default function App() {
   }
 
   async function saveJSONToLocalStorage(){
-    await setSavedJSON(inputJSON)
-    await localStorage.clear()
-    await localStorage.setItem("swagger-auth-help-JSON",JSON.stringify(savedJSON))
+    await localStorage.setItem("swagger-auth-help-JSON",JSON.stringify(inputJSON))
+    await localStorage.setItem("swagger-auth-help-BackendURL",JSON.stringify(backendURL))
   }
 
   return (
@@ -74,20 +104,9 @@ export default function App() {
         <img src="/images/icon-32.png" alt="Swagger_Auth_Help icon" />
         <p className="font-bold">Swagger Help</p>
       </div>
-      
-      <div>
-        <Label>Saved Value</Label>
-        <div className="flex space-x-4 items-center">
-          <Textarea readOnly value={JSON.stringify(savedJSON)} />
-          <Delete onClick={()=>{
-            localStorage.clear()
-            setSavedJSON("")
-            }} />
-        </div>
-      </div>
 
-
-      <div>
+      <div className="flex justify-between items-center">
+        <Label htmlFor="protocol">Protocol</Label>  
         <Select defaultValue="https" onValueChange={(value)=>setProtocol(value)}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Protocol" />
@@ -99,19 +118,25 @@ export default function App() {
         </Select>
       </div>
 
-      <div className="">
+      <div className="space-y-2">
         <Label htmlFor="backendURL">Backend URL</Label>  
-        <Textarea rows={6} onChange={(ev)=>setbackendURL(ev.target.value)}/>
+        <Input defaultValue={backendURL} onChange={(ev)=>setbackendURL(ev.target.value)}/>
       </div>
       
-      <div className="">
-        <Label htmlFor="inputJSON">Input JSON</Label>  
-        <Textarea rows={6} onChange={(ev)=>setInputJSON(ev.target.value)}/>
+      <div className="space-y-2">
+        <div className="flex justify-between items-center">
+          <Label htmlFor="inputJSON">Input JSON</Label>  
+          <Delete onClick={()=>{
+              localStorage.clear()
+              setInputJSON("")
+              }} />
+        </div>
+        <Textarea defaultValue={inputJSON} rows={6} onChange={(ev)=>setInputJSON(ev.target.value)}/>
       </div>
 
       <div className="flex items-center justify-around">
         <Button onClick={()=>saveJSONToLocalStorage()}>Save</Button>
-        <Button onClick={()=>onclick(protocol,backendURL,savedJSON)}>Login</Button>
+        <Button onClick={()=>onclick(protocol,backendURL,inputJSON)}>Login</Button>
       </div>
     </div>
   )
