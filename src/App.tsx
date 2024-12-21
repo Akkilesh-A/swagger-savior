@@ -1,6 +1,8 @@
 import {  useEffect, useState } from "react";
 import { Button, Label, Textarea, Select, SelectTrigger, SelectContent, SelectItem, SelectValue, Input } from "./components/ui";
-import { Delete } from "lucide-react";
+import {  Trash2 } from "lucide-react";
+import { ThemeProvider } from "./components/theme-provider";
+import { ModeToggle } from "./components";
 
 export default function App() {
 
@@ -99,45 +101,54 @@ export default function App() {
   }
 
   return (
-    <div className="p-2 w-[300px] flex space-y-4 flex-col font-mono">
-      <div className="flex justify-between items-center">
-        <img src="/images/icon-32.png" alt="Swagger_Auth_Help icon" />
-        <p className="font-bold">Swagger Help</p>
-      </div>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <div className="p-2 w-[300px] flex space-y-4 flex-col font-mono">
+        <nav className="flex justify-between items-center">
+          <img src="/images/icon-32.png" alt="Swagger_Auth_Help icon" />
+          <p className="font-extrabold">Swagger Auth Help</p>
+          <ModeToggle />
+        </nav>
 
-      <div className="flex justify-between items-center">
-        <Label htmlFor="protocol">Protocol</Label>  
-        <Select defaultValue="https" onValueChange={(value)=>setProtocol(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Protocol" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="https">HTTPS</SelectItem>
-            <SelectItem value="http">HTTP</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="backendURL">Backend URL</Label>  
-        <Input defaultValue={backendURL} onChange={(ev)=>setbackendURL(ev.target.value)}/>
-      </div>
-      
-      <div className="space-y-2">
         <div className="flex justify-between items-center">
-          <Label htmlFor="inputJSON">Input JSON</Label>  
-          <Delete onClick={()=>{
-              localStorage.clear()
-              setInputJSON("")
-              }} />
+          <Label htmlFor="protocol">Protocol</Label>  
+          <Select defaultValue="https" onValueChange={(value)=>setProtocol(value)}>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Protocol" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="https">HTTPS</SelectItem>
+              <SelectItem value="http">HTTP</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
-        <Textarea defaultValue={inputJSON} rows={6} onChange={(ev)=>setInputJSON(ev.target.value)}/>
-      </div>
 
-      <div className="flex items-center justify-around">
-        <Button onClick={()=>saveJSONToLocalStorage()}>Save</Button>
-        <Button onClick={()=>onclick(protocol,backendURL,inputJSON)}>Login</Button>
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+          <Label htmlFor="backendURL">Backend URL</Label>  
+            <Trash2 className="cursor-pointer" onClick={()=>{
+                localStorage.removeItem("swagger-auth-help-BackendURL")
+                setbackendURL("")
+                }} />
+          </div>
+          <Input defaultValue={backendURL} onChange={(ev)=>setbackendURL(ev.target.value)}/>
+        </div>
+        
+        <div className="space-y-2">
+          <div className="flex justify-between items-center">
+            <Label htmlFor="inputJSON">Input JSON</Label>  
+            <Trash2 className="cursor-pointer" onClick={()=>{
+                localStorage.removeItem("swagger-auth-help-JSON")
+                setInputJSON("")
+                }} />
+          </div>
+          <Textarea defaultValue={inputJSON} rows={6} onChange={(ev)=>setInputJSON(ev.target.value)}/>
+        </div>
+
+        <div className="flex items-center justify-around">
+          <Button onClick={()=>saveJSONToLocalStorage()}>Save</Button>
+          <Button onClick={()=>onclick(protocol,backendURL,inputJSON)}>Login</Button>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   )
 }
