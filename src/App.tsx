@@ -1,5 +1,5 @@
 import {  useEffect, useState } from "react";
-import { Button, Label, Textarea, Select, SelectTrigger, SelectContent, SelectItem, SelectValue, Input } from "./components/ui";
+import { Button, Label, Textarea, Input } from "./components/ui";
 import {  Trash2 } from "lucide-react";
 import { ThemeProvider } from "./components/theme-provider";
 import { ModeToggle } from "./components";
@@ -7,7 +7,6 @@ import { ModeToggle } from "./components";
 export default function App() {
 
   const [inputJSON,setInputJSON] = useState("")
-  const [protocol,setProtocol]=useState("https")
   const [backendURL, setbackendURL] = useState("")
   const [tokenName,setTokenName] = useState("")
 
@@ -21,10 +20,6 @@ export default function App() {
       const backendLink=savedBackendURL.split('"')[1]
       setbackendURL(backendLink!)
     }
-    const savedProtocol=localStorage.getItem("swagger-auth-help-protocol")
-    if(savedProtocol){
-      setProtocol(savedProtocol!)
-    }
     const savedTokenName=localStorage.getItem("swagger-auth-help-Token-Name")
     if(savedTokenName){
       const savedTokenNameVal=savedTokenName.split('"')[1]
@@ -32,23 +27,11 @@ export default function App() {
     }
   },[])
 
-  async function onclick(protocol:string,backendURL:string,jsonValue:string,tokenName:string){
+  async function onclick(backendURL:string,jsonValue:string,tokenName:string){
     const [tab]=await chrome.tabs.query({active:true})
     chrome.scripting.executeScript({
       target:{tabId:tab.id!},
-      func:async (protocol,backendURL,jsonValue,tokenName) => {
-        async function autoSelectProtocol(){
-          //Schemes and Authorize button bar
-          const ui=document.body.firstElementChild?.firstElementChild?.getElementsByClassName("swagger-ui")[0].lastElementChild?.getElementsByClassName("scheme-container")[0]
-          //Select https in dropdown menu
-          const httpsSelectMenu=ui?.firstElementChild?.firstElementChild?.lastElementChild as HTMLSelectElement
-          httpsSelectMenu.click()
-          console.log(protocol)
-          // //Select option with specified protocol
-          // const protocolOption=https.querySelector(`option[value=${protocol}]`) as HTMLOptionElement
-          // console.log(protocolOption)
-        }
-        
+      func:async (backendURL,jsonValue,tokenName) => {       
         const backendLink=backendURL
         const response=await fetch(backendLink,{
           headers: {
@@ -57,53 +40,59 @@ export default function App() {
           method:"POST",
           body:jsonValue
         })
-        const result=await response.json()
-        const token=result.data[tokenName]
+        if(response){
+          const result=await response.json()
+          const token=result.data[tokenName]
 
-        //Schemes and Authorize button bar
-        const ui=document.body.firstElementChild?.firstElementChild?.getElementsByClassName("swagger-ui")[0].lastElementChild?.getElementsByClassName("scheme-container")[0]
+          //Schemes and Authorize button bar
+          const scheme_container=document.body.querySelector(".swagger-ui .scheme-container")
+          console.log(scheme_container)
 
-        //Authorize modal open
-        const authorizeButton=document.getElementsByClassName("authorize")[0] as HTMLElement
-        authorizeButton.click()
+          //Authorize modal open
+          const authorizeButton=document.getElementsByClassName("authorize")[0] as HTMLElement
+          authorizeButton.click()
 
-        //Get the form "model-ux-content"
-        const form=ui?.firstElementChild?.lastElementChild?.lastElementChild?.lastElementChild?.firstElementChild?.firstElementChild?.lastElementChild?.lastElementChild?.firstElementChild as HTMLFormElement
+          //Get the form "model-ux-content"
+          const form=scheme_container?.querySelector(".schemes .auth-wrapper .modal-ux-content")?.lastElementChild?.firstElementChild as HTMLFormElement
+          console.log(form) 
 
-        //Get Input box
-        const searchBox=form?.firstElementChild?.firstElementChild?.lastElementChild?.lastElementChild?.firstElementChild as HTMLInputElement
-        searchBox.value="Bearer "+token
-        
-        //Click on authorize button
-        const authorize=form?.lastElementChild?.firstElementChild as HTMLButtonElement
+          //Get Input box
+          const searchBox=form?.firstElementChild?.firstElementChild?.lastElementChild?.lastElementChild?.firstElementChild as HTMLInputElement
+          searchBox.value="Bearer "+token
+          
+          //Click on authorize button
+          const authorize=form?.lastElementChild?.firstElementChild as HTMLButtonElement
 
-        // Trigger the 'input' event
-        const inputEvent = new Event('input', { bubbles: true });
-        searchBox.dispatchEvent(inputEvent);
+          // Trigger the 'input' event
+          const inputEvent = new Event('input', { bubbles: true });
+          searchBox.dispatchEvent(inputEvent);
 
-        // Trigger the 'change' event
-        const changeEvent = new Event('change', { bubbles: true });
-        searchBox.dispatchEvent(changeEvent);
+          // Trigger the 'change' event
+          const changeEvent = new Event('change', { bubbles: true });
+          searchBox.dispatchEvent(changeEvent);
 
-        if (authorize) {
-          setTimeout(() => {
-            // Ensure the button is not disabled
-            if (authorize.disabled) {
-              authorize.disabled = false;
-            }
-        
-            // Simulate a user click
-            authorize.click();
+          if (authorize) {
+            setTimeout(() => {
+              // Ensure the button is not disabled
+              if (authorize.disabled) {
+                authorize.disabled = false;
+              }
+          
+              // Simulate a user click
+              authorize.click();
 
-            //Close the modal
-            const modalClose=ui?.firstElementChild?.lastElementChild?.lastElementChild?.lastElementChild?.firstElementChild?.firstElementChild?.firstElementChild?.lastElementChild as HTMLElement
-            modalClose.click()
-            autoSelectProtocol()
-          }, 500);
+              //Close the modal
+              const modalClose=scheme_container?.firstElementChild?.lastElementChild?.lastElementChild?.lastElementChild?.firstElementChild?.firstElementChild?.firstElementChild?.lastElementChild as HTMLElement
+              modalClose.click()
+            }, 500);
+          }
+          console.log("success")
+        }else{
+          console.log("error hitting backend")
         }
         console.log("finished")
       },
-      args:[protocol,backendURL,jsonValue,tokenName]
+      args:[backendURL,jsonValue,tokenName]
     })
   }
 
@@ -121,19 +110,6 @@ export default function App() {
           <p className="font-extrabold text-lg">Swagger Savior ✌️</p>
           <ModeToggle />
         </nav>
-
-        <div className="flex justify-between items-center">
-          <Label htmlFor="protocol">Protocol</Label>  
-          <Select defaultValue="https" onValueChange={(value)=>setProtocol(value)}>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Protocol" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="https">HTTPS</SelectItem>
-              <SelectItem value="http">HTTP</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
 
         <div className="space-y-2">
           <Label htmlFor="token">Token Name</Label>    
@@ -174,7 +150,7 @@ export default function App() {
 
         <div className="flex items-center justify-around">
           <Button onClick={()=>saveJSONToLocalStorage()}>Save</Button>
-          <Button onClick={()=>onclick(protocol,backendURL,inputJSON,tokenName)}>Login</Button>
+          <Button onClick={()=>onclick(backendURL,inputJSON,tokenName)}>Login</Button>
         </div>
       </div>
     </ThemeProvider>

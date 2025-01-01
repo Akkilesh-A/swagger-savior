@@ -84,7 +84,7 @@ chrome://extensions/
 
 ## 🔮 Future Roadmap and Enhancements
 
-- [ ]  Support for custom token name. (It’s `accessToken` for now)
+- [x]  Support for custom token name. You can have any token name now 🎉
 - [ ]  Keyboard Shortcut to get the job done.
 - [ ]  Toastify Feedbacks to have a better idea of the porgress.
 - [ ]  Auto Update functionality for seamless upgrades.

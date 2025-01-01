@@ -14,7 +14,9 @@
     },
     "permissions":[
         "scripting",
-        "storage"
+        "storage",
+        "notifications",
+        "activeTab"
     ],
     "host_permissions": [
         "https://*/*",
